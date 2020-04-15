@@ -1,0 +1,20 @@
+.large-desktop {
+    background-color: rgb(255, 225, 248);
+}
+
+.small-desktop {
+    background-color: rgb(255, 225, 248);
+}
+
+.tablet {
+    background-color: rgb(255, 225, 248);
+}
+
+.mobile {
+    background-color: rgb(255, 225, 248);
+    color: white;
+}
+
+.container {
+    padding: 10px;
+}
