@@ -1,6 +1,7 @@
 import React from 'react';
 
-import axios from 'axios';
+import List from './List';
+import '../css/List.css';
 
 class ListView extends React.Component{
   constructor(props){
@@ -8,23 +9,10 @@ class ListView extends React.Component{
       this.state = {
           tasks: [],
           orderByOption : 'id',
-          categoryOption: 'all'
+          categoryOption: "all"
       } 
-      this.getData = this.getData.bind(this);
       this.handleChangeOrderBy = this.handleChangeOrderBy.bind(this);
-  }
-
-  getData() {
-      axios.get('http://my-json-server.typicode.com/bnissen24/project2DB/posts')
-        .then(response => {
-          this.setState({ tasks: response.data });
-          console.log(this.state.tasks);
-        }).catch(error => {
-          this.setState({ errorMessage: error.message });
-        });
-  }
-  componentDidMount() {
-      this.getData();
+      this.handleChangeCategory = this.handleChangeCategory.bind(this);
   }
 
   handleChangeOrderBy(event){
@@ -38,20 +26,20 @@ class ListView extends React.Component{
   render(){
     return (
       <div className="page-two">
-        <h2>Page 2: Can be shown through tabs</h2>
-        <div class="filter-wrapper">
+        <h2>List View</h2>
+        <div className="filter-wrapper">
             <div className="form-group">
-                <label for="orderBy">Order By</label>
-                <select value={this.state.orderByOption} onChange={this.handleChangeOrderBy} name="orderBy">
-                    <option value="" disabled selected hidden>Please choose</option>
+                <label>Order By</label>
+                <select value={this.state.orderByOption} onChange={this.handleChangeOrderBy}>
+                    <option value="none">Please choose</option>
                     <option value="title">Title</option>
-                    <option value="_id">ID</option>
+                    <option value="id">ID</option>
                 </select>
             </div>
             <div className="form-group">
-                <label for="category">Category</label>	
-                <select value={this.state.categoryOption} onChange={this.handleChangeCategory} name="category">
-                    <option value="" disabled selected hidden>Please choose</option>
+                <label>Category</label>	
+                <select value={this.state.categoryOption} onChange={this.handleChangeCategory}>
+                    <option value="all">All</option>
                     <option value="todo">To Do</option>
                     <option value="in-progress">In Progress</option>
                     <option value="review">Review</option>
@@ -59,6 +47,7 @@ class ListView extends React.Component{
                 </select>
             </div>
         </div>
+        <List orderBy={this.state.orderByOption} category={this.state.categoryOption}/>
       </div>
     )
   }
@@ -66,4 +55,4 @@ class ListView extends React.Component{
 
 export default ListView;
 
-//        <List data={this.state.tasks} orderBy={this.state.orderByOption} category={this.state.categoryOption}/> 
+//<List data={this.state.tasks} orderBy={this.state.orderByOption} category={this.state.categoryOption}/> 

@@ -2,15 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 import ItemCard from './GridItem';
-import './Grid.css';
+import '../css/Grid.css';
 
-/*const styles = {
-    container:{
-        backgroundColor: "#F5F5F5",
-        borderRadius: 3,
-        display: "inline-block"
-    }
-};*/
 let listType = {
     "todo": "To Do",
     "review": "Review",
@@ -46,7 +39,6 @@ class Grid extends React.Component{
         taskList = this.state.tasks.filter((task)=> {
             return task.column === this.props.type;
         });
-        
         let renderedList = taskList.map((item)=>{
             let itemInfo = {
                 title: item.title,
@@ -58,7 +50,7 @@ class Grid extends React.Component{
         })
         return (
             <div className="column">
-                <div class="card-header">{listType[this.props.type]}</div>
+                <div className="card-header">{listType[this.props.type]}</div>
                 {renderedList}
             </div>
         )

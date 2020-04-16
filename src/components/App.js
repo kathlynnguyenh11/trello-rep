@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './App.css';
+import '../css/App.css';
 import PageTabs from './PageTabs';
 import GridView from './GridView';
 import ListView from './ListView';
